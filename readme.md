@@ -9,14 +9,14 @@ aid my search for a job.
 - SQLite
 
 `git clone https://github.com/Donnie-1/Job-Scraper`
-**
+
 `pip install scrapy`
-**
+
 `sqlite3 database.db`
 
 Run the spider
 `cd Job-Scraper/jobscraper`
-**
+
 `scrapy crawl jobSpider`
 
 # Categorization
