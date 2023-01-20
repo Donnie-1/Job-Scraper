@@ -24,7 +24,7 @@ aid my search for a job.
 The data is being categorized by identifying certain keywords and technologies mentioned in the job postings. These keywords and technologies are pre-determined and stored in separate arrays such as "languages", "cloud", "devops", "web_frameworks", "database", "data", "soft-skills". When the scraper extracts the job description, it will use these arrays to check for any mentions of the keywords or technologies. If a match is found, the job posting will be categorized under that specific technology. For example, if the job posting mentions the word "Python" in the job description, it will be categorized under "languages" with python as the value. The same process applies for the other arrays of technologies. This way the job postings will be categorized into the specific technologies they are related to, making it easier to analyze the data and get insights about the job market for those technologies.
 
 # Visualization
-Tableau was used to visualize the data where it was broken up into major cities to see how the 
+Tableau was used to visualize the over **3600 jobs** where it was broken up into major cities to see how the 
 technologies used changed based ones location. 
 The visualization can be found at 
 https://public.tableau.com/app/profile/sa8644/viz/SeekSoftwareEngineerjobs/Dashboard1?publish=yes
