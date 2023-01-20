@@ -31,7 +31,9 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 5.0
 # Enable showing throttling stats for every response received:
 AUTOTHROTTLE_DEBUG = False
 
-
+ITEM_PIPELINES = {
+    'jobscraper.pipelines.SQLitePipeline': 300,
+}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

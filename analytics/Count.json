@@ -1,0 +1,65 @@
+{
+    "languages": {
+        "python": "639",
+        "java ": "458",
+        "c#": "593",
+        "c++": "240",
+        "javascript": "720",
+        "ruby": "67",
+        "typescript": "334",
+        "rust": "400",
+        "shell": "225",
+        "node": "367"
+    },
+    "cloud": {
+        "aws": "956",
+        "azure": "716",
+        "gcp": "125",
+        "redhat": "22"
+    },
+    "devops": {
+        "kubernetes": "247",
+        "ci/cd": "586",
+        "jenkins": "194",
+        "docker": "342",
+        "ansible": "145",
+        "terraform": "181",
+        "nagios": "4",
+        "prometheus": "15"
+    },
+    "ai": {
+        "tensorflow": "10",
+        "pytorch": "11",
+        "scikit-learn": "3",
+        "scikit": "6",
+        "caffe": "1",
+        "opencv": "4",
+        "genism": "0"
+    },
+    "database": {
+        "mysql": "112",
+        "postgresql": "87",
+        "mongoDB": "0",
+        "mongo": "84",
+        "Cassandra": "0",
+        "Elasticsearch": "0",
+        "Firebase": "0",
+        "Redis": "0",
+        "sqllite": "0",
+        "oracle": "154",
+        "sql server": "289",
+        "sql": "1010"
+    },
+    "education": {
+        "degree": "791",
+        "tertiary": "359"
+    },
+    "soft_skills": {
+        "communication": "1561",
+        "teamwork": "104",
+        "leadership": "574",
+        "proactive": "303",
+        "problem solve": "124",
+        "work ethic": "71"
+    }
+}

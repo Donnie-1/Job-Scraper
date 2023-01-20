@@ -1,6 +1,7 @@
 import scrapy
 import re
 import random 
+import sqlite3
 from urllib.parse import urlencode
 
 API_KEY = 'a6c39127-0d1a-4b5e-a850-be51e7ff5e51'
@@ -35,7 +36,7 @@ class JobSpider(scrapy.Spider):
                 'title': job.css("a[data-automation='jobTitle']::text").get(),
                 'company': job.css("a[data-automation='jobCompany']::text").get(),
                 'location': job.css("a[data-automation='jobLocation']::text").get(),
-                'list date': job.css("span[data-automation='jobListingDate']::text").get(),
+                'list_date': job.css("span[data-automation='jobListingDate']::text").get(),
                 'link': subpage_link,
             }
             
@@ -48,16 +49,17 @@ class JobSpider(scrapy.Spider):
             yield response.follow(next_page, callback=self.parse)
     
     def parse_subpage (self, response):
-        languages = ["python", "java ", "c#", "c++", "javascript", "ruby", "typescript", "rust", "shell", "node"]    
+        languages = ["python", "java ", "c#", "c++", "javascript", "ruby", "typescript", "rust", "shell"]    
         cloud = ["aws", "azure", "gcp", "redhat"]
         devops = ["kubernetes", "ci/cd", "jenkins", "docker", "ansible", "terraform", "nagios", "prometheus"]
-        ai = ["tensorflow", "pytorch", "scikit-learn", "scikit", "caffe", "opencv", "genism"]
-        database = ["mysql", "postgresql", "mongoDB", "mongo", "Cassandra", "Elasticsearch", "Firebase", "Redis", "sqllite", "oracle", "sql server", "sql"]
+        database = ["mysql", "postgresql", "mongodb", "mongo", "cassandra", "firebase", "redis", "sqllite", "oracle", "sql server", "sql", "nosql"]
         education = ["degree", "tertiary"]
-        soft_skills = ["communication", "teamwork", "leadership", "proactive", "problem solve", "work ethic"]
+        soft_skills = ["communication", "teamwork", "leadership", "proactive", "problem solv", "work ethic", "reliable"]
+        web_frameworks = ["react", "angular", "vue", "express", "laravel"]
+        data_analytics = ["matplotlib", "powerbi", "pandas", "numpy", "tableau", "power bi", "qlikview", "d3"]
         
-        names = ["languages", "cloud", "devops", "ai", "database", "education", "soft_skills"]
-        technologies = [languages, cloud, devops, ai, database, education, soft_skills]
+        names = ["languages", "cloud", "devops", "database", "education", "soft_skills", "web_frameworks", "data_analytics"]
+        technologies = [languages, cloud, devops, database, education, soft_skills, web_frameworks, data_analytics]
         
         inner_page = response.xpath("//*[@id='app']")
         data = response.meta["data"]
@@ -70,12 +72,12 @@ class JobSpider(scrapy.Spider):
         # gets all languages from subpage
 
         for i, sub_array in enumerate(technologies):
-            array = []
+            string = ""
             for key in sub_array:
                 if (key in text):    
-                    array.append(key)
+                    string += " " + key
 
-            data[f'{names[i]}'] = array
+            data[f'{names[i]}'] = string
             
         yield data
         yield response.follow(response.meta['original_url'], self.parse)

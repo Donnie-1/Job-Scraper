@@ -1,0 +1,2 @@
+web_frameworks = {"react": 0, "angular": 0, "vue": 0, "express": 0, "laravel": 0}
+data_analytics = {"matplotlib": 0, "powerbi": 0, "pandas": 0, "numpy": 0, "tableau": 0, "power bi": 0, "qlikview": 0, "d3": 0}
