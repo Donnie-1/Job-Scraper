@@ -14,7 +14,8 @@ aid my search for a job.
 
 `sqlite3 database.db`
 
-Run the spider
+**Run the spider**
+
 `cd Job-Scraper/jobscraper`
 
 `scrapy crawl jobSpider`
