@@ -12,7 +12,7 @@ BOT_NAME = 'jobscraper'
 SPIDER_MODULES = ['jobscraper.spiders']
 NEWSPIDER_MODULE = 'jobscraper.spiders'
 
-
+DEPTH_LIMIT = 40
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'jobscraper (+http://www.yourdomain.com)'
 
@@ -32,7 +32,7 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 5.0
 AUTOTHROTTLE_DEBUG = False
 
 ITEM_PIPELINES = {
-    'jobscraper.pipelines.SQLitePipeline': 300,
+    'jobscraper.psqlPipeline.PsqlPipeline': 300,
 }
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

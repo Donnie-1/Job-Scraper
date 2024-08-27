@@ -1,7 +1,4 @@
 import scrapy
-import re
-import random 
-import sqlite3
 from urllib.parse import urlencode
 
 API_KEY = 'a6c39127-0d1a-4b5e-a850-be51e7ff5e51'
@@ -17,12 +14,11 @@ header = {
 
 class JobSpider(scrapy.Spider):
     name = 'jobSpider'
-    # start_urls = ['https://www.seek.com.au/software-engineer-jobs']
     download_delay = 1/5
 
     def start_requests(self):
         
-        start_url = 'https://www.seek.com.au/software-engineer-jobs'
+        start_url = 'https://www.seek.com.au/junior-software-jobs'
         yield scrapy.Request(url=start_url, callback = self.parse, headers=header)
     
     def parse (self, response):
@@ -48,18 +44,14 @@ class JobSpider(scrapy.Spider):
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
     
-    def parse_subpage (self, response):
-        languages = ["python", "java ", "c#", "c++", "javascript", "ruby", "typescript", "rust", "shell"]    
+    def parse_subpage(self, response):
+        languages = ["python", "java", "c#", "c++", "javascript", "ruby", "typescript", "shell"]    
         cloud = ["aws", "azure", "gcp", "redhat"]
         devops = ["kubernetes", "ci/cd", "jenkins", "docker", "ansible", "terraform", "nagios", "prometheus"]
         database = ["mysql", "postgresql", "mongodb", "mongo", "cassandra", "firebase", "redis", "sqllite", "oracle", "sql server", "sql", "nosql"]
-        education = ["degree", "tertiary"]
-        soft_skills = ["communication", "teamwork", "leadership", "proactive", "problem solv", "work ethic", "reliable"]
-        web_frameworks = ["react", "angular", "vue", "express", "laravel"]
-        data_analytics = ["matplotlib", "powerbi", "pandas", "numpy", "tableau", "power bi", "qlikview", "d3"]
         
-        names = ["languages", "cloud", "devops", "database", "education", "soft_skills", "web_frameworks", "data_analytics"]
-        technologies = [languages, cloud, devops, database, education, soft_skills, web_frameworks, data_analytics]
+        names = ["languages", "cloud", "devops", "database"]
+        technologies = [languages, cloud, devops, database]
         
         inner_page = response.xpath("//*[@id='app']")
         data = response.meta["data"]
@@ -70,7 +62,6 @@ class JobSpider(scrapy.Spider):
         text = text.lower()
 
         # gets all languages from subpage
-
         for i, sub_array in enumerate(technologies):
             string = ""
             for key in sub_array:
@@ -81,8 +72,5 @@ class JobSpider(scrapy.Spider):
             
         yield data
         yield response.follow(response.meta['original_url'], self.parse)
-
-
-# https://proxy.scrapeops.io/v1/?api_key=a6c39127-0d1a-4b5e-a850-be51e7ff5e51&url=www.seek.com.au%2Fjob%2F59750070%3Ftype%3Dstandard
 
 
